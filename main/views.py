@@ -1,7 +1,6 @@
 from rest_framework import status
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from rest_framework.decorators import api_view
 
 from .models import Currency, CurrencyRate
 from .serializers import CurrencySerializer, CurrencyRateSerializer
@@ -15,15 +14,16 @@ class CurrencyList(APIView):
     def post(self, request, format=None):
         return Response("ok")
         
-
 class CurrencyRateList(APIView):
     def get(self, request, format=None):
         rates = CurrencyRate.objects.all()
         serializer = CurrencyRateSerializer(rates, many=True)
         return Response(serializer.data)
     
+    
     def post(self, request, format=None):
         if request.method == 'POST':
+            print(request.data)
             serializer = CurrencyRateSerializer(data=request.data)
             if serializer.is_valid():
                 serializer.save()

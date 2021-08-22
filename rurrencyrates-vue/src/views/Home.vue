@@ -109,9 +109,9 @@
 
       addRate() {
         const rate = {
-          currency: this.selectedcurrency,
+          currency: this.selectedcurrency['id'],
           date: this.date,
-          rate: this.rate
+          rate: parseFloat(this.rate)
         }
         axios
           .post('/api/v1/rates/', rate)
@@ -121,6 +121,8 @@
           .catch(error => {
             console.log(error)
           })
+        this.getCurrencyList()
+        this.getRatesList()
       },
     }
   }

@@ -9,7 +9,7 @@ class Currency(models.Model):
 
 class CurrencyRate(models.Model):
     currency = models.ForeignKey(Currency, on_delete=models.CASCADE)
-    date = models.DateField(auto_now=False, auto_now_add=False)
+    date = models.DateField(auto_now=False, auto_now_add=False, unique=True)
     rate = models.FloatField()
 
     def __str__(self):
