@@ -190,7 +190,7 @@
     display: block;
     background-color: gray;
     width: 85%;
-    height: 400px;
+    height: 300PX;
   }
 
   .graph-bar {
@@ -198,6 +198,6 @@
     width: 3%;
     background-color: blue;
     margin: 3px;
-    margin-top: 10%;
+    margin-top: 5%;
   }
 </style>
