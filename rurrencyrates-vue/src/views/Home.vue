@@ -187,7 +187,6 @@
 
 <style lang="scss">
   .graph {
-    // position: relative;
     display: block;
     background-color: gray;
     width: 85%;
@@ -197,7 +196,6 @@
   .graph-bar {
     display: inline-block;
     width: 3%;
-    // max-height: 90%;
     background-color: blue;
     margin: 3px;
     margin-top: 10%;

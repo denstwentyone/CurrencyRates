@@ -5,6 +5,8 @@ from rest_framework.response import Response
 from .models import Currency, CurrencyRate
 from .serializers import CurrencySerializer, CurrencyRateSerializer
 
+import operator
+
 class CurrencyList(APIView):
     def get(self, request, format=None):
         currencies = Currency.objects.all()
@@ -23,13 +25,13 @@ class CurrencyList(APIView):
 class CurrencyRateList(APIView):
     def get(self, request, format=None):
         rates = CurrencyRate.objects.all()
-        serializer = CurrencyRateSerializer(rates, many=True)
+        ordered_rates = sorted(rates, key=operator.attrgetter('date'))
+        serializer = CurrencyRateSerializer(ordered_rates, many=True)
         return Response(serializer.data)
     
     
     def post(self, request, format=None):
         if request.method == 'POST':
-            print(request.data)
             serializer = CurrencyRateSerializer(data=request.data)
             if serializer.is_valid():
                 serializer.save()
